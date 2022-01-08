@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+h2 {
+	position:relative;
+	text-align: center;
+	margin : 0 30px;
+}
+
+form {
+	position: absolute;
+  	left: 50%;
+  	top: 52%;
+ 	width: auto;
+ 	transform: translate(-50%, -50%);
+ 	font-size: 17px;
+}
+
+body  {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	background: #c69ad37e;
+/* 	background: linear-gradient(to right, #a8a8cf, pink); */
+}
+
+.wrapper  {
+	position: relative;
+	max-width: 460px;
+	width: 100%;
+	height: 600px;
+	background: #fff;
+	padding: 34px;
+	border-radius: 6px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+	
+.contaier {
+	margin-top: 20px; 	
+}	
+
+/* label 클래스 item 인 것 inline-block  */
+label.item {
+	width: 120px;
+	height: 30px;
+	display: inline-block;
+	
+	
+}
+
+.input-box > input {
+  height: 20px;
+  margin: 10px;
+}
+
+
+.select {
+  width: 150px;
+  height: 26px;
+  margin-top: 20px;
+}
+
+textarea {
+	margin-top: 5px;
+}
+
+
+input[type="submit"],[type="reset"]{
+	margin-top: 30px;
+	margin-left: 10px;
+	height: 30px;
+	width: 70px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+}
+
+.button input {
+  color: #000;
+ /*  letter-spacing: 1px; */
+/*   background: #c747ee7c; */
+  cursor: pointer;
+}
+
+
+.button input:hover {
+	color: #fff;
+  	background: #ca2bfab7;
+}
+
+.button {
+	text-align: center;
+}
