@@ -8,34 +8,34 @@ import java.util.ArrayList;
 
 public class MemberDAO {
 	String id = "HUEKA";
-	String pw = "0814";
+	String pw = "****";
 	String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 	String driver = "oracle.jdbc.driver.OracleDriver";
 
-	// µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¢±ÙÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤
+	// ë°ì´í„° ë² ì´ìŠ¤ì— ì ‘ê·¼í•  ìˆ˜ ìˆë„ë¡ ì„¤ì •
 	Connection con;
-	// µ¥ÀÌÅÍ º£ÀÌ½º¿¡¼­ Äõ¸®¸¦ ½ÇÇà½ÃÄÑÁÖ´Â °´Ã¼(SQL¹® ½ÇÇàÇÏ±â À§ÇØ »ç¿ë)
+	// ë°ì´í„° ë² ì´ìŠ¤ì—ì„œ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰ì‹œì¼œì£¼ëŠ” ê°ì²´(SQLë¬¸ ì‹¤í–‰í•˜ê¸° ìœ„í•´ ì‚¬ìš©)
 	PreparedStatement pstmt;
-	// µ¥ÀÌÅÍ º£ÀÌ½ºÀÇ Å×ÀÌºíÀÇ °á°ú¸¦ ¸®ÅÏ¹Ş¾Æ ÀÚ¹Ù¿¡ ÀúÀåÇØÁÖ´Â °´Ã¼(SQL¹® °á°ú¸¦ ¾ò¾î¿À±â À§ÇØ »ç¿ë)
+	// ë°ì´í„° ë² ì´ìŠ¤ì˜ í…Œì´ë¸”ì˜ ê²°ê³¼ë¥¼ ë¦¬í„´ë°›ì•„ ìë°”ì— ì €ì¥í•´ì£¼ëŠ” ê°ì²´(SQLë¬¸ ê²°ê³¼ë¥¼ ì–»ì–´ì˜¤ê¸° ìœ„í•´ ì‚¬ìš©)
 	ResultSet rs;
 
-	// µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¢±ÙÇÒ ¼ö ÀÖµµ·Ï µµ¿ÍÁÖ´Â ¸Ş¼­µå
+	// ë°ì´í„° ë² ì´ìŠ¤ì— ì ‘ê·¼í•  ìˆ˜ ìˆë„ë¡ ë„ì™€ì£¼ëŠ” ë©”ì„œë“œ
 	public void getCon() {
 		try {
-			// µå¶óÀÌ¹ö ·Îµå
+			// ë“œë¼ì´ë²„ ë¡œë“œ
 			Class.forName(driver);
-			// DBMS¿Í Connection ¿¬°á
+			// DBMSì™€ Connection ì—°ê²°
 			con = DriverManager.getConnection(url, id, pw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	// È¸¿ø ÇÑ »ç¶÷¿¡ ´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ´Â ¸Ş¼Òµå
+	// íšŒì› í•œ ì‚¬ëŒì— ëŒ€í•œ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ
 	public void insertMember(MemberBean bean) {
 		getCon();
 
 		try {
-			// Äõ¸® ÁØºñ
+			// ì¿¼ë¦¬ ì¤€ë¹„
 			String sql = "INSERT INTO MEMBERSHIP VALUES(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
@@ -46,28 +46,28 @@ public class MemberDAO {
 			pstmt.setString(6, bean.getJob());
 			pstmt.setString(7, bean.getInfo());
 
-			// Äõ¸® ½ÇÇà
+			// ì¿¼ë¦¬ ì‹¤í–‰
 			pstmt.executeUpdate();
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	// ¸ğµç È¸¿øÀÇ Á¤º¸¸¦ ¸®ÅÏÇÏ´Â ¸Ş¼Òµå ÀÛ¼º
+	// ëª¨ë“  íšŒì›ì˜ ì •ë³´ë¥¼ ë¦¬í„´í•˜ëŠ” ë©”ì†Œë“œ ì‘ì„±
 	public ArrayList<MemberBean> getAllMember() {
-		// ¸®ÅÏ Å¸ÀÔ ¼±¾ğ
+		// ë¦¬í„´ íƒ€ì… ì„ ì–¸
 		ArrayList<MemberBean> list = new ArrayList<MemberBean>();
 
 		getCon();
 
 		try {
-			// Äõ¸® ÁØºñ
+			// ì¿¼ë¦¬ ì¤€ë¹„
 			String sql = "SELECT * FROM MEMBERSHIP";
-			// Äõ¸® °´Ã¼ ÁØºñ
+			// ì¿¼ë¦¬ ê°ì²´ ì¤€ë¹„
 			pstmt = con.prepareStatement(sql);
-			// Äõ¸® ½ÇÇà ÈÄ °á°ú ¸®ÅÏ
+			// ì¿¼ë¦¬ ì‹¤í–‰ í›„ ê²°ê³¼ ë¦¬í„´
 			rs = pstmt.executeQuery();
-			// ¹İº¹¹®À» µ¹¸é¼­ È¸¿ø Á¤º¸¸¦ ÀúÀå
+			// ë°˜ë³µë¬¸ì„ ëŒë©´ì„œ íšŒì› ì •ë³´ë¥¼ ì €ì¥
 			while(rs.next()) {
 				MemberBean bean = new MemberBean();
 				bean.setId(rs.getString(1));
@@ -77,7 +77,7 @@ public class MemberDAO {
 				bean.setHobby(rs.getString(5));
 				bean.setJob(rs.getString(6));
 				bean.setInfo(rs.getString(7));
-				// ¸®½ºÆ®¿¡ ºó Å¬·¡½º ÀúÀå
+				// ë¦¬ìŠ¤íŠ¸ì— ë¹ˆ í´ë˜ìŠ¤ ì €ì¥
 				list.add(bean);
 			}
 			con.close();
@@ -87,7 +87,7 @@ public class MemberDAO {
 		return list;
 	}
 
-	// ÇÑ »ç¶÷ÀÇ Á¤º¸¸¦ ¸®ÅÏÇÏ´Â ¸Ş¼­µå
+	// í•œ ì‚¬ëŒì˜ ì •ë³´ë¥¼ ë¦¬í„´í•˜ëŠ” ë©”ì„œë“œ
 	public MemberBean oneSelectMember(String id) {
 		MemberBean bean = new MemberBean();
 
@@ -113,7 +113,7 @@ public class MemberDAO {
 		return bean;
 	}
 
-	// ÇÑ È¸¿øÀÇ ÆĞ½º¿öµå °ªÀ» ¸®ÅÏÇÏ´Â ¸Ş¼­µå ÀÛ¼º
+	// í•œ íšŒì›ì˜ íŒ¨ìŠ¤ì›Œë“œ ê°’ì„ ë¦¬í„´í•˜ëŠ” ë©”ì„œë“œ ì‘ì„±
 	public String getPassword(String id) {
 		String password= "";
 		try {
@@ -125,7 +125,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				password = rs.getString(1);
 			}
-			// ÀÚ¿ø ¹İ³³
+			// ìì› ë°˜ë‚©
 			con.close();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -133,7 +133,7 @@ public class MemberDAO {
 		return password;
 	}
 
-	// ÇÑ È¸¿øÀÇ Á¤º¸¸¦ ¼öÁ¤ÇÏ´Â ¸Ş¼­µå
+	// í•œ íšŒì›ì˜ ì •ë³´ë¥¼ ìˆ˜ì •í•˜ëŠ” ë©”ì„œë“œ
 	public void updateMember(MemberBean bean) {
 		getCon();
 		try {
@@ -149,7 +149,7 @@ public class MemberDAO {
 		}
 	}
 
-	// ÇÑ È¸¿øÀ» »èÁ¦ÇÏ´Â ¸Ş¼­µå ÀÛ¼º
+	// í•œ íšŒì›ì„ ì‚­ì œí•˜ëŠ” ë©”ì„œë“œ ì‘ì„±
 	public void deleteMember(String id) {
 		getCon();
 
